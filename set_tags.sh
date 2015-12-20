@@ -10,4 +10,6 @@ old_tags=`exiftool -p '$Keywords' $fname`
 prompt="Set tags"
 new_tags=`zenity --entry --title "$prompt" --text "$prompt" --entry-text "$old_tags"`
 
-exiftool -overwrite_original_in_place -Keywords="$new_tags" $fname
+if [ "$?" -eq 0 ]; then
+    exiftool -overwrite_original_in_place -Keywords="$new_tags" $fname
+fi
